@@ -25,7 +25,7 @@
         style: "currency",
         currency: "CLP",
       }).format(saldo);
-      $("h1").append("Saldo : " + formattedNumber);}
+      $("h1").text("Saldo : " + formattedNumber);}
   }
   
   verSaldo();

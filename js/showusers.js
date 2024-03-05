@@ -1,6 +1,6 @@
 (function () {
   if (localStorage.getItem("listaUsuarios")) {
-    tablabody = $("#contactos > tbody");
+    tablabody = $("#tablecontactos > tbody");
     datos = JSON.parse(localStorage.getItem("listaUsuarios"));
     $.each(datos, function (index, persona) {
       var row =
