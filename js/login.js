@@ -8,10 +8,7 @@ $("#login").submit(function (e) {
   } else {
     $("#inputEmail").val("");
     $("#inputPassword").val("");
-    $("#errorform").fadeIn(1000);
-    setTimeout(function () {
-      $("#errorform").fadeOut(1000);
-    }, 5000);
+    alertMensaje("Datos de login incorrectos!","danger",true);
   }
 });
 
