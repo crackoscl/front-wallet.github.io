@@ -221,7 +221,7 @@
             <h1 class="h3 mb-3 font-weight-normal">Agregar Contacto</h1>
             <label for="inputCuenta" class="sr-only">Numero de cuenta</label>
             <input
-              type="text"
+              type="number"
               id="inputCuenta"
               class="form-control mb-2"
               placeholder="N°cuenta"
@@ -241,12 +241,17 @@
               type="text"
               id="inputNombre"
               class="form-control mb-2"
+              pattern="^[A-Za-z\s]+$"
               placeholder="Nombre"
               required
             >
-            <button class="btn btn-smal btn-primary btn-block" type="submit">
+            <button class="btn btn-smal btn-primary btn-block mb-3" type="submit">
               Agregar
             </button>
+
+            <div id="alertMensaje" role="alert" style="display: none;">
+              Mensaje
+          </div>            
           </form>
         </div>
       </div>

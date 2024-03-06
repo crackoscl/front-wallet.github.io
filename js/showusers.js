@@ -21,6 +21,6 @@
       tablabody.append(row);
     });
   } else {
-    $("#errornotusers").fadeIn(1000);
+    alertMensaje("No se encontraron Registros.","danger",false);
   }
 })();

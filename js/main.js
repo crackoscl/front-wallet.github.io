@@ -1,3 +1,18 @@
+
+function alertMensaje(mensaje, errorType, fade){
+  $("#alertMensaje").removeClass()
+  $("#alertMensaje").addClass("alert alert-" + errorType)
+  $("#alertMensaje").text("!"+ mensaje)
+  $("#alertMensaje").fadeIn(1000);
+  if(fade){
+    setTimeout(function() { 
+      $('#alertMensaje').fadeOut(1000); 
+  }, 5000);
+  }
+ 
+}
+
+
 $(document).ready(function () {
   const hamBurger = document.querySelector(".toggle-btn");
 
@@ -16,5 +31,6 @@ $(document).ready(function () {
   $("#logout").click(function (){
     location.href = "index.html";
   })
+
 });
 

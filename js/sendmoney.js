@@ -37,19 +37,11 @@
 
     e.preventDefault();
     if (monto <= 0){
-      $("#sendMoneyalert").text("! debe ingresar un monto valido")
-      $("#sendMoneyalert").fadeIn(1000);
-      setTimeout(function() { 
-          $('#sendMoneyalert').fadeOut(1000); 
-      }, 5000);
+      alertMensaje("Debe ingresar un monto valido","danger",true); 
     }
 
     else if(monto > saldo){
-      $("#sendMoneyalert").text("! no tienes saldo suficiente")
-      $("#sendMoneyalert").fadeIn(1000);
-      setTimeout(function() { 
-          $('#sendMoneyalert').fadeOut(1000); 
-      }, 5000);
+      alertMensaje("No tienes saldo suficiente","danger",true);
     }
 
     else{
@@ -80,6 +72,7 @@
         })
         localStorage.setItem('transaciones',JSON.stringify(datos))
       }
+      alertMensaje("Envio de dinero existoso.","success",true); 
       $("#monto").val("");
       $("h1").text("");
       verSaldo();

@@ -1,3 +1,5 @@
+
+
 function verSaldo() {
   if (localStorage.getItem("saldo")) {
     const saldo = localStorage.getItem("saldo");
@@ -54,14 +56,13 @@ $("#addAmount").submit(function (e) {
         monto: monto,
       });
       localStorage.setItem("transaciones", JSON.stringify(datos));
+      alertMensaje("Deposito relizado con exito.","success",true); 
     }
     $("#monto").val("");
     $("h1").text("");
     verSaldo();
+   
   } else {
-    $("#errordeposit").fadeIn(1000);
-    setTimeout(function () {
-      $("#errordeposit").fadeOut(1000);
-    }, 5000);
+    alertMensaje("Monto debe ser mayor a 0.","danger",true);
   }
 });

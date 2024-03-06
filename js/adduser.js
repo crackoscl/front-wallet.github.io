@@ -24,6 +24,7 @@ $("#addUserForm").submit(function (e) {
     localStorage.setItem("listaUsuarios", JSON.stringify(datos));
   }
 
+  alertMensaje("Usuario Agregado con exito.","success",true); 
   $("#inputCuenta").val("");
   $("#inputEmail").val("");
   $("#inputNombre").val("");
