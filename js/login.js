@@ -22,37 +22,35 @@ $("#login-register").submit(function (e) {
   
   if (botonPresionado === "Login") {
     datos = JSON.parse(localStorage.getItem("usuarios"));
-    $.each(datos, function (index, persona) {
-      if (email === persona.email && pass === persona.password) {
-        location.href = "dashboard.html";
-      } else {
-        $("#inputEmail").val("");
-        $("#inputPassword").val("");
-        alertMensaje("Datos de login incorrectos!", "danger", true);
-      }
-    });
-
-  } else if (botonPresionado === "Registrar") {
-    const lst = [
-      {
-        email: email,
-        password: pass,
-      },
-    ];
-
-    if (localStorage.getItem("usuarios") === null) {
-      localStorage.setItem("usuarios", JSON.stringify(lst));
-      localStorage.setItem("usuarios", JSON.stringify(datos));
-      alertMensaje("Usuario Agregado con exito.", "success", true);
+  
+    if(datos.some(e => e.email === email)){
+      $.each(datos, function (index, persona) {
+        if (email === persona.email && pass === persona.password) {
+          location.href = "dashboard.html";
+        } else {
+          $("#inputEmail").val("");
+          $("#inputPassword").val("");
+          alertMensaje("Datos de login incorrectos!", "danger", true);
+        }
+      });
+    }
+    else{
       $("#inputEmail").val("");
       $("#inputPassword").val("");
+      alertMensaje("Usuario no existe", "danger", true);
+    }
 
-    } else {
+       
+  } else if (botonPresionado === "Registrar") {
+  
+    if (localStorage.getItem("usuarios") !== null) {
       datos = JSON.parse(localStorage.getItem("usuarios"));
       datos.push({
         email: email,
         password: pass,
       });
+      
+      localStorage.setItem("usuarios", JSON.stringify(datos));
       alertMensaje("Usuario Agregado con exito.", "success", true);
       $("#inputEmail").val("");
       $("#inputPassword").val("");
