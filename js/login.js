@@ -1,29 +1,62 @@
-
-function alertMensaje(mensaje, errorType, fade){
-  $("#alertMensaje").removeClass()
-  $("#alertMensaje").addClass("alert alert-" + errorType)
-  $("#alertMensaje").text("!"+ mensaje)
+function alertMensaje(mensaje, errorType, fade) {
+  $("#alertMensaje").removeClass();
+  $("#alertMensaje").addClass("alert alert-" + errorType);
+  $("#alertMensaje").text("!" + mensaje);
   $("#alertMensaje").fadeIn(1000);
-  if(fade){
-    setTimeout(function() { 
-      $('#alertMensaje').fadeOut(1000); 
-  }, 5000);
+  if (fade) {
+    setTimeout(function () {
+      $("#alertMensaje").fadeOut(1000);
+    }, 5000);
   }
- 
 }
 
-
-$("#login").submit(function (e) {
+$("#login-register").submit(function (e) {
   e.preventDefault();
+
   const email = $("#inputEmail").val();
   const pass = $("#inputPassword").val();
+  const botonPresionado = $(document.activeElement).text().trim();
+  if (localStorage.getItem("usuarios") === null) {
+    localStorage.setItem("usuarios", JSON.stringify([]));
+  }
+  
+  if (botonPresionado === "Login") {
+    datos = JSON.parse(localStorage.getItem("usuarios"));
+    $.each(datos, function (index, persona) {
+      if (email === persona.email && pass === persona.password) {
+        location.href = "dashboard.html";
+      } else {
+        $("#inputEmail").val("");
+        $("#inputPassword").val("");
+        alertMensaje("Datos de login incorrectos!", "danger", true);
+      }
+    });
 
-  if (email === "glagos@hola.cl" && pass === "pikaxu") {
-    location.href = "dashboard.html";
-  } else {
-    $("#inputEmail").val("");
-    $("#inputPassword").val("");
-    alertMensaje("Datos de login incorrectos!","danger",true);
+  } else if (botonPresionado === "Registrar") {
+    const lst = [
+      {
+        email: email,
+        password: pass,
+      },
+    ];
+
+    if (localStorage.getItem("usuarios") === null) {
+      localStorage.setItem("usuarios", JSON.stringify(lst));
+      localStorage.setItem("usuarios", JSON.stringify(datos));
+      alertMensaje("Usuario Agregado con exito.", "success", true);
+      $("#inputEmail").val("");
+      $("#inputPassword").val("");
+
+    } else {
+      datos = JSON.parse(localStorage.getItem("usuarios"));
+      datos.push({
+        email: email,
+        password: pass,
+      });
+      alertMensaje("Usuario Agregado con exito.", "success", true);
+      $("#inputEmail").val("");
+      $("#inputPassword").val("");
+    }
+   
   }
 });
-
