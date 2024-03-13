@@ -26,7 +26,7 @@ $("#login-register").submit(function (e) {
     if(datos.some(e => e.email === email)){
       $.each(datos, function (index, persona) {
         if (email === persona.email && pass === persona.password) {
-          location.href = "dashboard.html";
+          location.href = "menu.html";
         } else {
           $("#inputEmail").val("");
           $("#inputPassword").val("");

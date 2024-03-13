@@ -29,7 +29,7 @@ $(document).ready(function () {
   }
 
   $("#logout").click(function (){
-    location.href = "index.html";
+    location.href = "login.html";
   })
 
 });
